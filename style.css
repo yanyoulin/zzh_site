@@ -1,0 +1,203 @@
+/* 全站通用設定 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  line-height: 1.8;
+  background: #f5f1e6; /* 淡淡的紙張感底色 */
+  color: #222;
+}
+
+/* 頁首區域 */
+.site-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d5c6a5;
+}
+
+.site-header h1 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  letter-spacing: 0.2em; /* 稍微拉開字距，有戲台匾額感 */
+}
+
+/* 導覽列 */
+.site-nav {
+  margin-bottom: 12px;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: #7b3f26;
+  margin-right: 8px;
+  font-size: 0.95rem;
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+}
+
+/* about 頁的「頁面標題 + 小目錄」 */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin-bottom: 8px;
+}
+
+.page-toc {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.page-toc a {
+  text-decoration: none;
+  margin-right: 4px;
+}
+
+.page-toc a:hover {
+  text-decoration: underline;
+}
+
+/* about 頁：主內容 + 側欄的雙欄架構（桌機版） */
+.about-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.about-main {
+  flex: 3;
+}
+
+.about-side {
+  flex: 1;
+  font-size: 0.9rem;
+  background: #fdfaf3;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #e0d5b8;
+}
+
+.about-side h3 {
+  margin-top: 0;
+}
+
+/* 主要內容 */
+main section {
+  margin-bottom: 32px;
+}
+
+h2 {
+  margin-top: 0;
+  color: #5b2b1e;
+}
+
+h3 {
+  margin-bottom: 4px;
+  color: #7b3f26;
+}
+
+p {
+  margin: 8px 0;
+}
+
+ul {
+  padding-left: 1.2em;
+}
+
+/* 頁尾 */
+footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid #d5c6a5;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+}
+
+/* 歷史頁用的時間軸樣式 */
+.history-intro {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.timeline {
+  list-style: none;        /* 不要預設項目符號 */
+  padding-left: 0;
+  margin-left: 12px;
+  border-left: 2px solid #d5c6a5;  /* 左邊一條直線 */
+}
+
+.timeline li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 20px;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #7b3f26;  /* 和導覽列同色系的小圓點 */
+}
+
+.timeline time {
+  display: block;
+  font-weight: bold;
+  color: #5b2b1e;
+  margin-bottom: 4px;
+}
+
+.timeline h4 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+
+/* 手機／小螢幕調整：RWD */
+@media (max-width: 768px) {
+  body {
+    max-width: 100%;
+    padding: 16px 12px 28px;
+  }
+
+  .site-header h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .site-header p {
+    text-align: center;
+  }
+
+  .site-nav {
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .site-nav a {
+    display: inline-block;
+    margin: 4px 4px;
+  }
+
+  /* about 雙欄在小螢幕改成上下排列 */
+  .about-layout {
+    flex-direction: column;
+  }
+
+  .about-side {
+    margin-top: 16px;
+  }
+}
+
