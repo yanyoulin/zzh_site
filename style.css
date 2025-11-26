@@ -1,203 +1,358 @@
-/* 全站通用設定 */
+/* 引入 Google Fonts：思源宋體 (標題用) & 思源黑體 (內文用) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap');
+
+/* --- 全站變數設定 (方便未來改色) --- */
+:root {
+  --primary-color: #8B2216;    /* 傳統朱紅 (象徵熱鬧、戲台) */
+  --secondary-color: #D4AF37;  /* 繡金 (象徵尊貴、精緻) */
+  --text-dark: #2c2c2c;        /* 深灰黑文字 */
+  --text-light: #555;          /* 淺灰說明文字 */
+  --bg-color: #fcf9f2;         /* 米白紙張底色 */
+  --card-bg: #ffffff;          /* 卡片亮白背景 */
+  --border-color: #e6dec3;     /* 邊框色 */
+}
+
+/* --- 基礎設定 --- */
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 24px 16px 40px;
+  font-family: 'Noto Sans TC', sans-serif; /* 內文預設黑體 */
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
   line-height: 1.8;
-  background: #f5f1e6; /* 淡淡的紙張感底色 */
-  color: #222;
+  overflow-x: hidden; /* 防止橫向卷軸 */
 }
 
-/* 頁首區域 */
-.site-header {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #d5c6a5;
-}
-
-.site-header h1 {
-  margin: 0 0 8px;
-  font-size: 2rem;
-  letter-spacing: 0.2em; /* 稍微拉開字距，有戲台匾額感 */
-}
-
-/* 導覽列 */
-.site-nav {
-  margin-bottom: 12px;
-}
-
-.site-nav a {
-  text-decoration: none;
-  color: #7b3f26;
-  margin-right: 8px;
-  font-size: 0.95rem;
-}
-
-.site-nav a:hover {
-  text-decoration: underline;
-}
-
-/* about 頁的「頁面標題 + 小目錄」 */
-.page-header {
-  margin-bottom: 24px;
-}
-
-.page-header h2 {
-  margin-bottom: 8px;
-}
-
-.page-toc {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.page-toc a {
-  text-decoration: none;
-  margin-right: 4px;
-}
-
-.page-toc a:hover {
-  text-decoration: underline;
-}
-
-/* about 頁：主內容 + 側欄的雙欄架構（桌機版） */
-.about-layout {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.about-main {
-  flex: 3;
-}
-
-.about-side {
-  flex: 1;
-  font-size: 0.9rem;
-  background: #fdfaf3;
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid #e0d5b8;
-}
-
-.about-side h3 {
+h1, h2, h3, h4 {
+  font-family: 'Noto Serif TC', serif; /* 標題使用宋體，更有戲味 */
   margin-top: 0;
-}
-
-/* 主要內容 */
-main section {
-  margin-bottom: 32px;
+  font-weight: 700;
 }
 
 h2 {
-  margin-top: 0;
-  color: #5b2b1e;
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
 }
 
-h3 {
-  margin-bottom: 4px;
-  color: #7b3f26;
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: color 0.3s;
 }
 
-p {
-  margin: 8px 0;
+a:hover {
+  color: #a02217;
 }
 
-ul {
-  padding-left: 1.2em;
+/* 通用容器：用來限制內容最大寬度 */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* 頁尾 */
-footer {
-  margin-top: 40px;
-  padding-top: 16px;
-  border-top: 1px solid #d5c6a5;
-  font-size: 0.9rem;
-  color: #555;
+/* --- 導覽列 (Sticky Navigation) --- */
+.site-header {
+  background: rgba(255, 255, 255, 0.95); /* 微微透明 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky; /* 黏在頂部 */
+  top: 0;
+  z-index: 1000;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.site-nav a {
+  margin-left: 20px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 500;
+  position: relative;
+}
+
+/* 導覽列連結的底線動畫 */
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s;
+}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* --- Hero Section (首頁大圖區域) --- */
+.hero-section {
+  position: relative;
+  height: 85vh; /* 佔據螢幕 85% 高度 */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://placehold.co/1920x1080/2c2c2c/D4AF37?text=真虛實掌中戲團'); 
+  /* ↑ 注意：這裡使用了假圖，你可以換成自己劇團的帥氣照片 URL */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  color: #fff;
+  margin-bottom: 60px;
 }
 
-/* 歷史頁用的時間軸樣式 */
-.history-intro {
-  font-size: 0.95rem;
-  color: #555;
+.hero-content {
+  z-index: 2;
+  padding: 0 20px;
+  animation: fadeUp 1.2s ease-out; /* 進場動畫 */
 }
 
+.hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  letter-spacing: 0.1em;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* CTA 按鈕 */
+.btn-cta {
+  display: inline-block;
+  padding: 14px 40px;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(139, 34, 22, 0.3);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.btn-cta:hover {
+  background-color: #a52a1c;
+  transform: translateY(-5px);
+  color: #fff;
+}
+
+/* 裝飾性捲動提示 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  animation: bounce 2s infinite;
+  opacity: 0.7;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* --- 卡片式排版 (Card UI) --- */
+section {
+  background: var(--card-bg);
+  padding: 40px;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* 柔和陰影 */
+  border: 1px solid rgba(0,0,0,0.02);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* 滑鼠經過卡片時浮起 */
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* --- 頁面標題區 (About & History 用) --- */
+.page-header-block {
+  text-align: center;
+  padding: 60px 0;
+  background-color: #f2ede4;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.page-header-block h2 {
+  font-size: 2.5rem;
+  border: none;
+  margin-bottom: 16px;
+  color: var(--text-dark);
+}
+
+.page-header-block p {
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- 時間軸樣式 (History) --- */
 .timeline {
-  list-style: none;        /* 不要預設項目符號 */
+  list-style: none;
   padding-left: 0;
-  margin-left: 12px;
-  border-left: 2px solid #d5c6a5;  /* 左邊一條直線 */
+  position: relative;
+  margin-left: 20px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6px;
+  width: 2px;
+  background: #e0d5b8;
 }
 
 .timeline li {
   position: relative;
-  padding-left: 16px;
-  margin-bottom: 20px;
+  padding-left: 36px;
+  margin-bottom: 40px;
 }
 
+/* 時間軸圓點 */
 .timeline li::before {
-  content: "";
+  content: '';
   position: absolute;
-  left: -7px;
+  left: 0;
   top: 6px;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: #7b3f26;  /* 和導覽列同色系的小圓點 */
+  background: #fff;
+  border: 3px solid var(--primary-color);
+  transition: transform 0.3s, background 0.3s;
+  z-index: 2;
+}
+
+.timeline li:hover::before {
+  background: var(--primary-color);
+  transform: scale(1.3);
 }
 
 .timeline time {
-  display: block;
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.85rem;
   font-weight: bold;
-  color: #5b2b1e;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
-.timeline h4 {
-  margin: 0 0 4px;
-  font-size: 1rem;
+/* --- 雙欄佈局 (About & History) --- */
+.layout-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr; /* 左3右1 */
+  gap: 40px;
+  align-items: start;
 }
 
+.sidebar {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 100px; /* 側欄滾動時會黏住 */
+}
 
-/* 手機／小螢幕調整：RWD */
+.sidebar h3 {
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.sidebar ul {
+  padding-left: 20px;
+  font-size: 0.95rem;
+  color: var(--text-light);
+}
+
+/* --- 頁尾 --- */
+footer {
+  background-color: #2c2c2c;
+  color: #aaa;
+  text-align: center;
+  padding: 40px 0;
+  margin-top: 60px;
+  font-size: 0.9rem;
+}
+
+/* --- 動畫效果 --- */
+
+/* 1. Hero 文字上浮 */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. 裝飾箭頭跳動 */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* 3. Scroll Reveal (捲動浮現) 初始狀態 */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+/* 當 JS 加上 active class 時的狀態 */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- RWD 手機版調整 --- */
 @media (max-width: 768px) {
-  body {
-    max-width: 100%;
-    padding: 16px 12px 28px;
-  }
-
-  .site-header h1 {
-    font-size: 1.6rem;
-    text-align: center;
-  }
-
-  .site-header p {
-    text-align: center;
-  }
-
-  .site-nav {
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  .site-nav a {
-    display: inline-block;
-    margin: 4px 4px;
-  }
-
-  /* about 雙欄在小螢幕改成上下排列 */
-  .about-layout {
-    flex-direction: column;
-  }
-
-  .about-side {
-    margin-top: 16px;
-  }
+  .hero-content h1 { font-size: 2.5rem; }
+  
+  .layout-grid { grid-template-columns: 1fr; } /* 變單欄 */
+  
+  .site-header { flex-direction: column; }
+  .header-inner { flex-direction: column; }
+  
+  .site-nav { margin-top: 16px; display: flex; flex-wrap: wrap; justify-content: center; }
+  .site-nav a { margin: 0 10px; margin-bottom: 8px; }
+  
+  .sidebar { position: static; margin-top: 20px; }
 }
-

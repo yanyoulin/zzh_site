@@ -2,70 +2,85 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>真虛實布袋戲網站｜首頁</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- 頁首：網站標題與導覽列 -->
+
   <header class="site-header">
-    <h1>真虛實掌中戲團</h1>
-
-    <!-- 之後會變成真正可以連到其他頁面的導覽列 -->
-    <nav class="site-nav">
-      <a href="index.html">首頁</a> |
-      <a href="about.html">關於真虛實</a> |
-      <a href="history.html">布袋戲歷史</a> |
-      <a href="picture.html">圖片閱覽</a> |
-      <a href="#">聯絡我們</a>
-    </nav>
-
-    <p>
-      戲偶、戲台、操偶師，承載千年的故事。<br>
-      真虛實-掌中乾坤。
-    </p>
+    <div class="header-inner">
+      <h1 class="logo">真虛實掌中戲團</h1>
+      <nav class="site-nav">
+        <a href="index.html">首頁</a>
+        <a href="about.html">關於真虛實</a>
+        <a href="history.html">布袋戲歷史</a>
+        <a href="picture.html">圖片閱覽</a>
+        <a href="#">聯絡我們</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- 主要內容區 -->
-  <main>
-    <section>
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>掌中乾坤</h1>
+      <p>戲偶、戲台、操偶師，承載著無數動人故事。<br>歡迎來到真虛實掌中戲團。</p>
+      <a href="#main-content" class="btn-cta">進入戲台</a>
+    </div>
+    <div class="scroll-indicator">↓ 向下捲動探索 ↓</div>
+  </div>
+
+  <main id="main-content" class="container">
+    
+    <section class="reveal">
       <h2>歡迎來到真虛實布袋戲網站</h2>
       <p>
-        這個網站是由真虛實掌中戲團第三代打造，透過此種形式傳承。
+        這個網站是由真虛實掌中戲團第三代成員打造，希望能透過網路的形式，
+        讓更多人看見傳統與創新交織的掌中戲文化。
       </p>
       <p>
-        目前網站仍在建置中，很多區塊還只是預留位置。
-        接下來幾天，我會一步一步把它變成一個真正的布袋戲主題網站。
+        目前網站仍在建置初期，我們會持續更新，將它打造成一個豐富的布袋戲主題平台。
       </p>
     </section>
 
-    <section>
+    <section class="reveal">
       <h2>淺談真虛實</h2>
       <p>
-        (待補充)
+        (此處為內容預留位置，未來將加入劇團的核心精神與風格介紹。)
       </p>
     </section>
 
-    <section>
+    <section class="reveal">
       <h2>本站目前的規劃</h2>
-      <ul>
-        <li>首頁：網站簡介與最新更新</li>
-        <li>關於本站：說明真虛實的理念與網站製作緣起</li>
-        <li>角色介紹：整理重要角色、招式與關係</li>
-        <li>劇情／歷史：以時間軸或篇章整理故事與發展</li>
-      </ul>
-      <p>
-        現在你看到的，是 Day 1 的最初版本。<br>
-        接下來幾天，我會替這個網站加上設計、圖片與互動效果。
+      <p style="margin-top: 20px; color: #888; font-size: 0.9em;">
+        現在你看到的，是網站開發的第一版原型。<br>
+        接下來，我們將賦予它更多的色彩、圖片與生命力。
       </p>
     </section>
+
   </main>
 
-  <!-- 頁尾 -->
   <footer>
     <p>
       &copy; <span id="year-placeholder">2025</span> 真虛實布袋戲網站．All rights reserved.
     </p>
   </footer>
+
+  <script>
+    window.addEventListener('scroll', reveal);
+    function reveal() {
+      var reveals = document.querySelectorAll('.reveal');
+      for(var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100; // 元素進入視窗多少像素後顯示
+        if(elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    // 初始執行一次，確保剛載入時可見的元素會顯示
+    reveal(); 
+  </script>
 </body>
 </html>
