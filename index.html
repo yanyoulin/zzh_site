@@ -22,6 +22,11 @@
   </header>
 
   <div class="hero-section">
+    <div class="hero-slideshow">
+      <div class="slide active" style="background-image: url('img/01.jpg');"></div>
+      <div class="slide" style="background-image: url('img/01.jpg');"></div>
+      <div class="slide" style="background-image: url('img/01.jpg');"></div>
+    </div>
     <div class="hero-content">
       <h1>掌中乾坤</h1>
       <p>戲偶、戲台、操偶師，承載著無數動人故事。<br>歡迎來到真虛實掌中戲團。</p>
@@ -81,6 +86,24 @@
     }
     // 初始執行一次，確保剛載入時可見的元素會顯示
     reveal(); 
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    const slideInterval = 3000; // 3000毫秒 = 3秒 (建議3秒比2秒舒服，2秒有點太快)
+
+    function nextSlide() {
+      // 1. 把目前的 active 拿掉
+      slides[currentSlide].classList.remove('active');
+      
+      // 2. 算下一張是第幾號 (如果到底了就回到 0)
+      currentSlide = (currentSlide + 1) % slides.length;
+      
+      // 3. 把下一張加上 active
+      slides[currentSlide].classList.add('active');
+    }
+
+    // 設定計時器，每隔一段時間執行 nextSlide
+    setInterval(nextSlide, slideInterval);
+    // === 背景輪播程式碼結束 ===
   </script>
 </body>
 </html>

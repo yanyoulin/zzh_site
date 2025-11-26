@@ -117,10 +117,6 @@ a:hover {
 .hero-section {
   position: relative;
   height: 85vh; /* 佔據螢幕 85% 高度 */
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://placehold.co/1920x1080/2c2c2c/D4AF37?text=真虛實掌中戲團'); 
-  /* ↑ 注意：這裡使用了假圖，你可以換成自己劇團的帥氣照片 URL */
-  background-size: cover;
-  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,12 +124,54 @@ a:hover {
   text-align: center;
   color: #fff;
   margin-bottom: 60px;
+  overflow: hidden; /* 防止圖片放大時超出邊界 */
+  background: #2c2c2c; /* 當圖片還沒載入時的預設底色 */
 }
 
 .hero-content {
   z-index: 2;
   padding: 0 20px;
   animation: fadeUp 1.2s ease-out; /* 進場動畫 */
+}
+
+/* 新增：輪播容器 */
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* 放在最底層 */
+}
+
+/* 新增：單張幻燈片樣式 */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0; /* 預設隱藏 */
+  transition: opacity 1s ease-in-out; /* 1秒淡入淡出效果，比較有質感 */
+  
+  /* 這裡加一個黑色半透明遮罩，讓文字永遠清晰 */
+  /* 如果你的圖很暗，可以把 0.5 改小一點 */
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.5); 
+}
+
+/* 新增：當幻燈片被加上 active 類別時顯示 */
+.slide.active {
+  opacity: 1;
+  transform: scale(1.05); /* 加一點點放大效果，更有動感 */
+  transition: opacity 1s ease-in-out, transform 6s linear; /* 圖片會慢慢放大 */
+}
+
+/* 確保內容文字浮在圖片上面 */
+.hero-content, .scroll-indicator {
+  position: relative;
+  z-index: 2; /* 比圖片層級高 */
 }
 
 .hero-content h1 {
