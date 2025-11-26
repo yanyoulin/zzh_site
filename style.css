@@ -165,7 +165,7 @@ a:hover {
 .slide.active {
   opacity: 1;
   transform: scale(1.05); /* 加一點點放大效果，更有動感 */
-  transition: opacity 1s ease-in-out, transform 6s linear; /* 圖片會慢慢放大 */
+  transition: opacity 2s ease-in-out, transform 6s linear; /* 圖片會慢慢放大 */
 }
 
 /* 確保內容文字浮在圖片上面 */
